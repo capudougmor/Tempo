@@ -1,0 +1,12 @@
+{
+  "name": "Tempo",
+  "displayName": "Tempo",
+  "expo": {
+    "name": "Tempo",
+    "slug": "Tempo",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
