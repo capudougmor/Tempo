@@ -2,14 +2,19 @@ import { Ionicons } from '@expo/vector-icons'
 import React from 'react'
 import styled from 'styled-components/native'
 
+import { condition } from '../../utils/conditions'
+
 
 export default function Forecast({ data }) {
+
+  let icon = condition(data.condition)
 
   return(
     <Container onPress={() => navigation.openDrawer()}>
       <DatePrevision>{data.date}</DatePrevision>
-      <Ionicons name="rainy-outline" color="#1ec9ff" size={25} />
+      <Ionicons name={icon.name} color={icon.color} size={25} />
       <View>
+        <Min>{icon.name}º</Min>
         <Min>{data.min}º</Min>
         <Max>{data.max}º</Max>
       </View>
@@ -18,11 +23,11 @@ export default function Forecast({ data }) {
 }
 
 const Container = styled.View`
-  margin-left: 12px;
+  margin: 10px 6px;
   background-color: #fff;
   border-radius: 8px;
   padding: 10px 14px;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 ` 
 

@@ -22,8 +22,8 @@ const Container = styled.TouchableOpacity`
   width: 70px;
   height: 70px;
   position: absolute;
-  left: 10px;
-  top: 40px;
+  left: 15px;
+  top: 30px;
   z-index: 9;
   align-items: center;
   justify-content: center;
