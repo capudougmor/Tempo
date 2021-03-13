@@ -3,7 +3,7 @@ import styled from 'styled-components/native'
 import Menu from '../../components/Menu'
 import Header from '../../components/Header'
 import Conditions from '../../components/Conditions'
-import { FlatList } from 'react-native-gesture-handler'
+import Forecast from '../../components/Forecast'
 
 const mylist = [
   {
@@ -97,6 +97,8 @@ export default function Home() {
       <List 
         data={mylist}
         keyExtractor={ item => item.date}
+        renderItem={({item}) => <Forecast data={item} />}
+        horizontal={true}
       />
     </Container>
   )
@@ -110,7 +112,7 @@ const Container = styled.SafeAreaView`
   padding-top: 10px;
 ` 
 
-const List = styled(FlatList)`
+const List = styled.FlatList`
   margin-top: 10px;
   margin-left: 10px;
 ` 
