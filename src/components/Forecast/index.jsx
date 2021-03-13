@@ -14,7 +14,6 @@ export default function Forecast({ data }) {
       <DatePrevision>{data.date}</DatePrevision>
       <Ionicons name={icon.name} color={icon.color} size={25} />
       <View>
-        <Min>{icon.name}º</Min>
         <Min>{data.min}º</Min>
         <Max>{data.max}º</Max>
       </View>

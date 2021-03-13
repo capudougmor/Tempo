@@ -1,5 +1,10 @@
 import React from 'react'
 import styled from 'styled-components/native' 
+import * as Location from 'expo-location'
+import { useEffect, useState } from 'react'
+
+import api, {key} from '../../services/api'
+
 import Menu from '../../components/Menu'
 import Header from '../../components/Header'
 import Conditions from '../../components/Conditions'
@@ -89,6 +94,23 @@ const mylist = [
 ]
 
 export default function Home() {
+  const [errorMsg, setErrorMsg] = useState()
+
+  useEffect(() => {
+    (async () => {
+      let {  status } = await Location.requestPermissionsAsync()
+
+      if(status !== 'granted') {
+        setErrorMsg("Permissao negada para acessar a localização!")
+        return
+      }
+
+      let location = await Location.getCurrentPositionAsync({})
+      console.log(location);
+
+    })()
+  }, [])
+
   return(
     <Container>
       <Menu />
