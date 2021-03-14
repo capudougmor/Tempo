@@ -1,4 +1,5 @@
 export function condition(condition) {
+  let icon = {}
   switch(condition) {
     case 'storm':
       return icon = {

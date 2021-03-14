@@ -9,18 +9,18 @@ const {Navigator, Screen} = createDrawerNavigator()
 function Routes() {
   return(
     <Navigator>
-      <Screen         
-        name="Home"
-        component={Home}
-        options={{
-          title: 'Minha cidade'
-        }}
-        />
       <Screen 
         name="Seach"
         component={Seach}
         options={{
           title: 'Procurar'
+        }}
+        />
+      <Screen         
+        name="Home"
+        component={Home}
+        options={{
+          title: 'Minha cidade'
         }}
         />
     </Navigator>

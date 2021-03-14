@@ -12,89 +12,6 @@ import Conditions from '../../components/Conditions'
 import Forecast from '../../components/Forecast'
 import { Text } from 'react-native'
 
-const mylist = [
-  {
-    "date": "12/03",
-    "weekday": "Sex",
-    "max": 26,
-    "min": 17,
-    "description": "Tempestades",
-    "condition": "clear_day"
-  },
-  {
-    "date": "13/03",
-    "weekday": "Sáb",
-    "max": 27,
-    "min": 18,
-    "description": "Tempestades",
-    "condition": "rain"
-  },
-  {
-    "date": "14/03",
-    "weekday": "Dom",
-    "max": 27,
-    "min": 18,
-    "description": "Tempestades",
-    "condition": "storm"
-  },
-  {
-    "date": "15/03",
-    "weekday": "Seg",
-    "max": 26,
-    "min": 18,
-    "description": "Tempestades",
-    "condition": "storm"
-  },
-  {
-    "date": "16/03",
-    "weekday": "Ter",
-    "max": 27,
-    "min": 17,
-    "description": "Tempestades",
-    "condition": "storm"
-  },
-  {
-    "date": "17/03",
-    "weekday": "Qua",
-    "max": 28,
-    "min": 18,
-    "description": "Tempestades",
-    "condition": "storm"
-  },
-  {
-    "date": "18/03",
-    "weekday": "Qui",
-    "max": 25,
-    "min": 18,
-    "description": "Tempestades",
-    "condition": "storm"
-  },
-  {
-    "date": "19/03",
-    "weekday": "Sex",
-    "max": 23,
-    "min": 19,
-    "description": "Tempestades",
-    "condition": "storm"
-  },
-  {
-    "date": "20/03",
-    "weekday": "Sáb",
-    "max": 23,
-    "min": 19,
-    "description": "Tempestades",
-    "condition": "storm"
-  },
-  {
-    "date": "21/03",
-    "weekday": "Dom",
-    "max": 24,
-    "min": 18,
-    "description": "Tempestades",
-    "condition": "storm"
-  }
-]
-
 export default function Home() {
   const [errorMsg, setErrorMsg] = useState()
   const [loading, setLoading] = useState(true)
@@ -113,6 +30,7 @@ export default function Home() {
       }
 
       let location = await Location.getCurrentPositionAsync({})
+      console.log(location);
 
       const response = await api.get(
         `/weather?key=${key}&lat=${location.coords.latitude}&lon=${location.coords.longitude}`
@@ -125,19 +43,18 @@ export default function Home() {
 
       switch (response.data.results.condition_slug) {
         case 'clear_day':
-          setIcon = ({ name: 'sunny-outline', color: '#ffb300' })
+          setIcon({ name: 'sunny-outline', color: '#ffb300' })
           break
         case 'cloudly_day':
-          setIcon = ({ name: 'partly-sunny-outline', color: '#ffb300' })
+          setIcon({ name: 'partly-sunny', color: '#ffb300' })
           break
         case 'rain':
-          setIcon = ({ name: 'rainy-outline', color: '#fff' })
+          setIcon({ name: 'rainy-outline', color: '#fff' })
           break
         case 'storm':
-          setIcon = ({ name: 'thunderstorm-outline', color: '#fff' })
+          setIcon({ name: 'thunderstorm', color: '#fff' })
           break
       }
-
       setLoading(false)
     })()
   }, [])
@@ -151,7 +68,7 @@ export default function Home() {
         <Header background={background} weather={weather} icon={icon} />
         <Conditions weather={weather} />
         <List
-          data={mylist}
+          data={weather.results.forecast}
           keyExtractor={item => item.date}
           renderItem={({ item }) => <Forecast data={item} />}
           horizontal={true}
