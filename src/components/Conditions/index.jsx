@@ -3,25 +3,25 @@ import styled from 'styled-components/native'
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons'
 
 
-export default function Conditions() {
+export default function Conditions({ weather }) {
 
   return(
     <Container>
       <Condition>
         <Feather name="wind" size={23} color="#1ed6ff" />
-        <Tempo>7 km/h</Tempo>
+        <Tempo>{weather.results.wind_speedy}</Tempo>
       </Condition>
       <Condition>
         <MaterialCommunityIcons name="weather-sunset-up" size={23} color="#1ed6ff" />
-        <Tempo>5:22 am</Tempo>
+        <Tempo>{weather.results.sunrise}</Tempo>
       </Condition>
       <Condition>
         <MaterialCommunityIcons name="weather-sunset-down" size={23} color="#1ed6ff" />
-        <Tempo>5:22 pm</Tempo>
+        <Tempo>{weather.results.sunset}</Tempo>
       </Condition>
       <Condition>
         <Feather name="droplet" size={23} color="#1ed6ff" />
-        <Tempo>34%</Tempo>
+        <Tempo>{weather.results.humidity}%</Tempo>
       </Condition>
     </Container>      
   )
